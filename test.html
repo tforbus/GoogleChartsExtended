@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script src="vizData.js"></script>
+		<script src="visualization.js"></script>
+	</head>
+	
+	<body>
+		<script type="text/javascript">
+			google.load("visualization", "1", {packages:["corechart"]});
+      		google.setOnLoadCallback(drawPieChart);
+      		
+      		function drawPieChart() {
+      			p = $.PieChart(vizData);
+      			p.init();
+      			p.options.title = "A pie chart!";
+        		var data = google.visualization.arrayToDataTable(p.dataTable);
+
+        		var chart = new google.visualization.PieChart(document.getElementById('pieChart'));
+        		chart.draw(data, p.options);
+      		}
+		</script>
+		
+		<div id="pieChart" style="width:500px; height:500px; border:1px solid #000;">
+		</div>
+	</body>
+</html>
