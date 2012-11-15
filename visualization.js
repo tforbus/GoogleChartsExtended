@@ -19,7 +19,7 @@ $.VizFactory = (function(data, vizType, eId) {
 			break;
 			
 		case "Table":
-			viz = $.Table(data);
+			viz = $.Table(data, vizType, eId);
 			break;
 	}
 	
@@ -194,11 +194,12 @@ $.ScatterChart = (function(data, type, eId) {
 // Table
 // *****************************************************************************
 
-$.Table = (function(data, type) {
+$.Table = (function(data, type, eId) {
 	var chart = {
 		data: data,
 		type: type,
-		dataTable: null,
+		googleData: null,
+		googleChart: null,
 		options: {}
 	};
 	
@@ -207,9 +208,15 @@ $.Table = (function(data, type) {
 	// Public methods ----------------------------------------------------------
 	
 	chart.init = function() {
+		chart.googleData = new google.visualization.DataTable();
+		
 		var h = makeHeaders(chart.data);
 		var d = makeData(chart.data);
-		chart.dataTable = makeDataTable(h, d);
+		
+		console.log("headers: " + JSON.stringify(h));
+		console.log("rows: " + JSON.stringify(d)); 
+		makeDataTable(h, d);
+		googleSetup();
 	};
 	
 	// Recalculates information
@@ -218,16 +225,22 @@ $.Table = (function(data, type) {
 		var d = makeData(data);
 		chart.dataTable = makeDataTable(h, d);
 		chart.data = data;
+		
+		googleSetup();
 	};
 	
 	
 	// Private methods ---------------------------------------------------------
 	
+	var googleSetup = function() {
+		chart.googleChart = new google.visualization.Table(document.getElementById(eId));
+	};
+	
 	// Create the headers of the pie chart
 	var makeHeaders = function(data) {
 		var headers = new Array();
 		$.each(data.headers, function(index, value) {
-			headers.push(value.title);
+			headers.push({type: value.type, title: value.title});
 		});
 		
 		return headers;
@@ -237,22 +250,18 @@ $.Table = (function(data, type) {
 	var makeData = function(data) {
 		var datas = new Array();
 		$.each(data.values, function(index, value) {
-			var temp = new Array();
-			temp.push(value.data[0]);
-			temp.push(value.data[1]);
-			
-			datas.push(temp);
+			datas.push(value.data);
 		});
 		
 		return datas;
 	};
 	
 	var makeDataTable = function(headers, datas) {
-		var table = new Array();
-		table.push(headers);
-		table = table.concat(datas);
+		for(var i = 0; i < headers.length; i++) {
+			chart.googleData.addColumn(headers[i].type, headers[i].title);
+		}
 		
-		return table;
+		chart.googleData.addRows(datas);
 	};
 	
 	return chart;

@@ -9,21 +9,22 @@
 	
 	<body>
 		<script type="text/javascript">
-			google.load("visualization", "1", {packages:["corechart"]});
+			google.load("visualization", "1", {packages:["corechart", "table"]});
       		google.setOnLoadCallback(drawViz);
       		
       		function drawViz() {
-      			drawPieChart();
-      			drawScatterChart();
+      			//drawPieChart();
+      			//drawScatterChart();
+      			drawTable();
       		}
       		
-      		function drawPieChart() {
+      		/*function drawPieChart() {
       			p = $.VizFactory(pieData, "PieChart", "pieChart");
       			p.options.title = "A pie chart!";
         		p.googleChart.draw(p.googleData, p.options);
-      		}
+      		}*/
       		
-      		function drawScatterChart() {
+      		/*function drawScatterChart() {
       			s = $.VizFactory(scatterData, "ScatterChart", "scatterChart");
       			var options = {
           			title: 'Age vs. Weight comparison',
@@ -33,9 +34,15 @@
         		};
         		s.options = options;
         		s.googleChart.draw(s.googleData, s.options);
+      		}*/
+      		
+      		function drawTable() {
+      			t = $.VizFactory(tableData, "Table", "table");
+      			t.googleChart.draw(t.googleData, {showRowNumber: true});
       		}
 		</script>
 		
+		<div id="table" style="width:500px; height:500px; border:1px solid #000; float: left;"></div>
 		<div id="pieChart" style="width:500px; height:500px; border:1px solid #000; float: left;"></div>
 		<div id="scatterChart" style="width:500px; height:500px; border:1px solid #000; float: left;"></div>
 	</body>
