@@ -10,20 +10,39 @@
 	<body>
 		<script type="text/javascript">
 			google.load("visualization", "1", {packages:["corechart"]});
-      		google.setOnLoadCallback(drawPieChart);
+      		google.setOnLoadCallback(drawViz);
+      		
+      		function drawViz() {
+      			drawPieChart();
+      			drawScatterChart();
+      		}
       		
       		function drawPieChart() {
-      			p = $.PieChart(vizData);
-      			p.init();
+      			p = $.VizFactory(pieData, "PieChart");
       			p.options.title = "A pie chart!";
         		var data = google.visualization.arrayToDataTable(p.dataTable);
 
         		var chart = new google.visualization.PieChart(document.getElementById('pieChart'));
         		chart.draw(data, p.options);
       		}
+      		
+      		function drawScatterChart() {
+      			s = $.VizFactory(scatterData, "ScatterChart");
+      			var data = google.visualization.arrayToDataTable(s.dataTable);
+      			var options = {
+          			title: 'Age vs. Weight comparison',
+          			hAxis: {title: 'Age', minValue: 0, maxValue: 15},
+          			vAxis: {title: 'Weight', minValue: 0, maxValue: 15},
+          			legend: 'none'
+        		};
+        		s.options = options;
+        		
+        		var chart = new google.visualization.ScatterChart(document.getElementById('scatterChart'));
+        		chart.draw(data, options);
+      		}
 		</script>
 		
-		<div id="pieChart" style="width:500px; height:500px; border:1px solid #000;">
-		</div>
+		<div id="pieChart" style="width:500px; height:500px; border:1px solid #000; float: left;"></div>
+		<div id="scatterChart" style="width:500px; height:500px; border:1px solid #000; float: left;"></div>
 	</body>
 </html>

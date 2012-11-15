@@ -1,4 +1,4 @@
-var vizData = {
+var pieData = {
 	"headers": [
 		{
 			"type": null, 
@@ -42,4 +42,57 @@ var vizData = {
 			]
 		}
 	]
-}
+};
+
+
+var scatterData = {
+	"headers": [
+		{
+			"type": null, 
+			"title": "Age"
+		},
+		{
+			"type": null, 
+			"title": "Weight"
+		}
+	],
+	
+	"values": [
+		{
+			"title": null, 
+			"data":[
+				8, 12
+			]
+		},
+		{
+			"title": null, 
+			"data":[
+				4, 5.5
+			]
+		},
+		{
+			"title": null, 
+			"data":[
+				11, 14
+			]
+		},
+		{
+			"title": null, 
+			"data":[
+				4, 5
+			]
+		},
+		{
+			"title": null, 
+			"data":[
+				3, 3.5
+			]
+		},
+		{
+			"title": null, 
+			"data":[
+				6.5, 7
+			]
+		}
+	]
+};
