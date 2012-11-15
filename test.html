@@ -18,17 +18,13 @@
       		}
       		
       		function drawPieChart() {
-      			p = $.VizFactory(pieData, "PieChart");
+      			p = $.VizFactory(pieData, "PieChart", "pieChart");
       			p.options.title = "A pie chart!";
-        		var data = google.visualization.arrayToDataTable(p.dataTable);
-
-        		var chart = new google.visualization.PieChart(document.getElementById('pieChart'));
-        		chart.draw(data, p.options);
+        		p.googleChart.draw(p.googleData, p.options);
       		}
       		
       		function drawScatterChart() {
-      			s = $.VizFactory(scatterData, "ScatterChart");
-      			var data = google.visualization.arrayToDataTable(s.dataTable);
+      			s = $.VizFactory(scatterData, "ScatterChart", "scatterChart");
       			var options = {
           			title: 'Age vs. Weight comparison',
           			hAxis: {title: 'Age', minValue: 0, maxValue: 15},
@@ -36,9 +32,7 @@
           			legend: 'none'
         		};
         		s.options = options;
-        		
-        		var chart = new google.visualization.ScatterChart(document.getElementById('scatterChart'));
-        		chart.draw(data, options);
+        		s.googleChart.draw(s.googleData, s.options);
       		}
 		</script>
 		

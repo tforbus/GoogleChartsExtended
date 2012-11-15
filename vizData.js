@@ -96,3 +96,48 @@ var scatterData = {
 		}
 	]
 };
+
+
+var tableData = {
+	"headers": [
+		{
+			"type": "string", 
+			"title": "Name"
+		},
+		{
+			"type": "number", 
+			"title": "Salary"
+		},
+		{
+			"type": "boolean",
+			"title": "Full Time Employee"
+		}
+	],
+	
+	"values": [
+		{
+			"title": null, 
+			"data":[
+				"Mike", { v: 10000, f: "$10,000" }, true 
+			]
+		},
+		{
+			"title": null, 
+			"data":[
+				"Jim",   { v:8000,   f: "$8,000" },  false
+			]
+		},
+		{
+			"title": null, 
+			"data":[
+				"Alice", { v: 12500, f: "$12,500" }, true
+			]
+		},
+		{
+			"title": null, 
+			"data":[
+				"Bob",   { v: 7000,  f: "$7,000"},  true
+			]
+		}
+	]
+};
