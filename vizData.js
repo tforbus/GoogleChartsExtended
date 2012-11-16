@@ -1,3 +1,5 @@
+var dataVariables = ["pieData", "scatterData", "lineData", "tableData"];
+
 var pieData = {
 	"headers": [
 		{
@@ -92,6 +94,50 @@ var scatterData = {
 			"title": null, 
 			"data":[
 				6.5, 7
+			]
+		}
+	]
+};
+
+var lineData = {
+	"headers": [
+		{
+			"type": null, 
+			"title": "Year"
+		},
+		{
+			"type": null, 
+			"title": "Sales"
+		},
+		{
+			"type": null, 
+			"title": "Expenses"
+		}
+	],
+	
+	"values": [
+		{
+			"title": null, 
+			"data":[
+				'2004', 1000, 400
+			]
+		},
+		{
+			"title": null, 
+			"data":[
+				'2005', 1170, 460
+			]
+		},
+		{
+			"title": null, 
+			"data":[
+				'2006', 660, 1120
+			]
+		},
+		{
+			"title": null, 
+			"data":[
+				'2007', 1030, 540
 			]
 		}
 	]

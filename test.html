@@ -13,18 +13,21 @@
       		google.setOnLoadCallback(drawViz);
       		
       		function drawViz() {
-      			//drawPieChart();
-      			//drawScatterChart();
+      			drawPieChart();
+      			drawScatterChart();
       			drawTable();
+      			drawLineChart();
       		}
       		
-      		/*function drawPieChart() {
+      		
+      		function drawPieChart() {
       			p = $.VizFactory(pieData, "PieChart", "pieChart");
       			p.options.title = "A pie chart!";
         		p.googleChart.draw(p.googleData, p.options);
-      		}*/
+      		}
       		
-      		/*function drawScatterChart() {
+      		
+      		function drawScatterChart() {
       			s = $.VizFactory(scatterData, "ScatterChart", "scatterChart");
       			var options = {
           			title: 'Age vs. Weight comparison',
@@ -34,7 +37,14 @@
         		};
         		s.options = options;
         		s.googleChart.draw(s.googleData, s.options);
-      		}*/
+      		}
+      		
+      		
+      		function drawLineChart() {
+      			l = $.VizFactory(lineData, "LineChart", "lineChart");
+      			l.googleChart.draw(l.googleData, null);
+      		}
+      		
       		
       		function drawTable() {
       			t = $.VizFactory(tableData, "Table", "table");
@@ -42,8 +52,9 @@
       		}
 		</script>
 		
-		<div id="table" style="width:500px; height:500px; border:1px solid #000; float: left;"></div>
-		<div id="pieChart" style="width:500px; height:500px; border:1px solid #000; float: left;"></div>
-		<div id="scatterChart" style="width:500px; height:500px; border:1px solid #000; float: left;"></div>
+		<div id="table" style="width:300px; height:500px; border:1px solid #000; float: left;"></div>
+		<div id="pieChart" style="width:300px; height:500px; border:1px solid #000; float: left;"></div>
+		<div id="scatterChart" style="width:300px; height:500px; border:1px solid #000; float: left;"></div>
+		<div id="lineChart" style="width:300px; height:500px; border:1px solid #000; float: left;"></div>
 	</body>
 </html>

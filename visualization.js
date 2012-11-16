@@ -21,6 +21,10 @@ $.VizFactory = (function(data, vizType, eId) {
 		case "Table":
 			viz = $.Table(data, vizType, eId);
 			break;
+			
+		case "LineChart":
+			viz = $.LineChart(data, vizType, eId);
+			break;
 	}
 	
 	viz.type = vizType;
@@ -168,11 +172,7 @@ $.ScatterChart = (function(data, type, eId) {
 	var makeData = function(data) {
 		var datas = new Array();
 		$.each(data.values, function(index, value) {
-			var temp = new Array();
-			temp.push(value.data[0]);
-			temp.push(value.data[1]);
-			
-			datas.push(temp);
+			datas.push(value.data);
 		});
 		
 		return datas;
@@ -188,6 +188,85 @@ $.ScatterChart = (function(data, type, eId) {
 	
 	return chart;
 });
+
+
+// *****************************************************************************
+// Line Chart
+// *****************************************************************************
+
+$.LineChart = (function(data, type, eId) {
+	var chart = {
+		data: data,
+		dataTable: null,
+		type: type,
+		googleData: null,
+		googleChart: null,
+		options: {}
+	};
+	
+	var originalData = data;
+	
+	// Public methods ----------------------------------------------------------
+	
+	chart.init = function() {
+		var h = makeHeaders(chart.data);
+		var d = makeData(chart.data);
+		chart.dataTable = makeDataTable(h, d);
+		
+		console.log(JSON.stringify(chart.dataTable));
+		
+		googleSetup();
+	};
+	
+	// Recalculates information
+	chart.repaint = function(data) {
+		var h = makeHeaders(data);
+		var d = makeData(data);
+		chart.dataTable = makeDataTable(h, d);
+		chart.data = data;
+		
+		googleSetup();
+	};
+	
+	
+	// Private methods ---------------------------------------------------------
+	
+	var googleSetup = function() {
+		chart.googleData = google.visualization.arrayToDataTable(chart.dataTable);
+		chart.googleChart = new google.visualization.LineChart(document.getElementById(eId));
+	};
+	
+	// Create the headers of the pie chart
+	var makeHeaders = function(data) {
+		var headers = new Array();
+		$.each(data.headers, function(index, value) {
+			headers.push(value.title);
+		});
+		
+		return headers;
+	};
+	
+	// Data and slices
+	var makeData = function(data) {
+		var datas = new Array();
+		$.each(data.values, function(index, value) {
+			datas.push(value.data);
+		});
+		
+		return datas;
+	};
+	
+	var makeDataTable = function(headers, datas) {
+		var table = new Array();
+		table.push(headers);
+		table = table.concat(datas);
+		
+		return table;
+	};
+	
+	return chart;
+});
+
 
 
 // *****************************************************************************
@@ -213,8 +292,6 @@ $.Table = (function(data, type, eId) {
 		var h = makeHeaders(chart.data);
 		var d = makeData(chart.data);
 		
-		console.log("headers: " + JSON.stringify(h));
-		console.log("rows: " + JSON.stringify(d)); 
 		makeDataTable(h, d);
 		googleSetup();
 	};

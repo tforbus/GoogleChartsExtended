@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Viz</title>
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="css/viz.css" />
+		<link rel="stylesheet" type="text/css" href="jquery/ui/css/ui-lightness/jquery-ui-1.9.1.custom.min.css" />
+		
+		<!-- jQuery / jQuery UI -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+		<script src="jquery/flip/jquery.flip.min.js"></script>
+		
+		<!-- Charts -->
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		
+		<!-- Data / Viz -->
+		<script src="vizData.js"></script>
+		<script src="visualization.js"></script>
+		<script src="vizBuilder.js"></script>
+	</head>
+	
+	<body>
+		<div id="createOptions">
+			<select name="type">
+				<option>Select View Type</option>
+				<option value="PieChart">Pie Chart</option>
+				<option value="LineChart">Line Chart</option>
+				<option value="ScatterChart">Scatter Chart</option>
+				<option value="Table">Table</option>
+			</select>
+			
+			<select name="variable">
+				<option>Select Data Variable</option>
+				<option>pieData</option>
+			</select>
+			
+			<button id="create">Create New View</button>
+		</div>
+		
+		<div id="vizArea">
+		</div>
+	</body>
+</html>

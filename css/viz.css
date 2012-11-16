@@ -1,0 +1,59 @@
+#vizArea {
+	border: 1px solid #000;
+	width: 960px;
+	height: 600px;
+}
+
+.view {
+	border: 1px solid #ccc;
+	width: 150px;
+	height: 150px;
+}
+
+	.view .header {
+		overflow: hidden;
+		padding: 0 0.2em;
+	}
+	
+		.view .header .left {
+			float: left;
+			width: 50%;
+			text-align: left;
+			font-weight: bold;
+		}
+		
+			.view .header .left .ui-icon {
+				float: left;
+			}
+			
+		
+		.view .header .right {
+			float: right;
+			width: 50%;
+			text-align: right;
+			font-weight: bold;
+			cursor: pointer;
+		}
+		
+			.view .header .right .ui-icon {
+				float: right;
+			}
+		
+		.view .header .ui-icon-arrow-4 {
+			cursor: move;
+		}
+		
+		.view .header .ui-icon-gear {
+			cursor: pointer;
+		}
+
+.view .sizeInfo {
+	font-size: 0.8em;
+	font-style: italic;
+}
+
+h3 { margin: 0; text-align: center; }
+
+.ui-resizable-helper {
+	border: 3px dotted blue;
+}
