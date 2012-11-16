@@ -23,7 +23,7 @@
 	<body>
 		<script type="text/javascript">
 			google.load("visualization", "1", {packages:["corechart", "table"]});
-      		google.setOnLoadCallback(function() { alert('woah'); });
+      		google.setOnLoadCallback(function() { });
       	</script>
 		<div id="createOptions">
 			<select name="type">
@@ -34,9 +34,9 @@
 				<option value="Table">Table</option>
 			</select>
 			
+			<!-- Gets built in the js -->
 			<select name="variable">
 				<option>Select Data Variable</option>
-				<option>pieData</option>
 			</select>
 			
 			<button id="create">Create New View</button>

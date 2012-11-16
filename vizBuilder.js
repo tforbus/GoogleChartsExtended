@@ -1,6 +1,13 @@
 $(function() {
 	$(document).tooltip();
+	init();
 	
+	function init() {
+		for(var i = 0; i < dataVariables.length; i++) {
+			var $opt = $("<option>").text(dataVariables[i]);
+			$("select[name=variable]").append($opt);
+		}
+	}
 	
 	// Increment the view Ids
 	function incrementView() {
